@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import homeStyles from "@/styles/Home.module.css";
 import { NextPage } from "next";
 import { getSortedPostsData } from "@/lib/post";
+import Link from "next/link";
 
 const Home  = ({allPostsData} : {
   allPostsData : {
@@ -13,7 +14,7 @@ const Home  = ({allPostsData} : {
   }[]
 }) => {
   return(
-    <div>
+    <div className={homeStyles.container}>
       <Head>
         <title>JeeJeee&#127775;</title>
         <link rel="icon" href="/icon-grapes.ico" />
@@ -30,7 +31,10 @@ const Home  = ({allPostsData} : {
         <ul className={homeStyles.list}>
           {allPostsData.map(({id, date, title}) => 
             <li className={homeStyles.listItem} key={id}>
-              <a>{title}</a>
+              <Link href={`/posts/${id}`}>
+                {title}
+                
+              </Link>
               <br />
               <small className={homeStyles.lightText}>{date}</small>
             </li>
